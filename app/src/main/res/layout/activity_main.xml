@@ -10,12 +10,14 @@
         android:id="@+id/et_speed"
         android:layout_width="98dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="85dp"
+        android:layout_marginTop="73dp"
+        android:layout_marginEnd="97dp"
         android:layout_marginRight="23dp"
         android:ems="10"
         android:inputType="number"
+        android:text="20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,9 +25,10 @@
         android:id="@+id/editText3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="89dp"
         android:ems="10"
         android:text="speed (sec/line)"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,26 +43,10 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="138dp"
         android:ems="10"
         android:hint="Data"
-        android:text=" Line 1 \n Line2 \n Line3"
-        />
-
-
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-
-        android:layout_alignParentBottom="true"
-
-        android:layout_marginStart="21dp"
-        android:layout_marginLeft="21dp"
-        android:onClick="Save"
-        android:text="Save" />
+        android:text=" Line 1 \n Line2 \n Line3" />
 
 
     <Button
@@ -69,11 +56,11 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
 
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
 
-        android:layout_marginStart="246dp"
-        android:layout_marginLeft="246dp"
-        android:layout_marginBottom="0dp"
+        android:layout_marginStart="238dp"
+        android:layout_marginLeft="238dp"
+        android:layout_marginTop="7dp"
         android:onClick="Send"
         android:text="Send" />
 

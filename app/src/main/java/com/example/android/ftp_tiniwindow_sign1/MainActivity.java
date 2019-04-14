@@ -56,8 +56,8 @@ import android.widget.TextView;
 import java.io.OutputStream;
 
 public class MainActivity extends AppCompatActivity {
-
-
+    private int lineCount;
+    private int lineLength = 10;
     private EditText mSpeed;
     private EditText mTextData;
     private TextView mTextMessage;
@@ -93,9 +93,46 @@ public class MainActivity extends AppCompatActivity {
 
         mTextMessage = findViewById(R.id.message);
 
+        formatText() ;
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
+
+
+    void formatText(){
+        String mlines = mTextData.getText().toString()  ;
+        String [] splitData;
+        splitData = mlines.split("\n") ;
+        lineCount = splitData.length;
+        for (int j = 0; j < splitData.length; j ++ ){
+            if (splitData [j].length() > lineLength)  {
+                splitData [j] = splitData [j].substring(0, lineLength);
+            }
+            else if (splitData [j].length() > lineLength) {
+                splitData [j] = padRight (splitData[j], " ", lineLength);
+            }
+
+        }
+        mlines = join( "\n", splitData) ;
+        mlines = mlines.toUpperCase();
+        mTextData.setText(mlines);
+    };
+
+    private String generateFileContents(){
+       int speed =  Integer.parseInt(mSpeed.getText().toString()) ;
+        formatText();
+        String retval = mTextData.getText().toString().replace("\n", "\r\n") +
+                "\r\n[trick coding version 2.2]\r\n" +
+                "020105010001FF050100" +
+                padLeft(Integer.toHexString(lineCount), "0", 2 ) +
+                padLeft(Integer.toHexString(speed * 10), "0", 2 ) ;
+
+
+        retval = retval.toUpperCase();
+
+        return retval;
+
+    };
 
 
     public void Send(View view) {
@@ -118,6 +155,50 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    protected static String join( String delim, String [] arr){
+
+        String returnValue = "";
+        for (int i = 0; i < arr.length; i ++){
+            returnValue = returnValue + arr[i];
+            if (i < arr.length - 1 ) {
+                returnValue = returnValue + delim;
+            }
+
+        }
+
+
+        return returnValue;
+    }
+    protected static String padRight(String s, String pad, int n) {
+        String returnValue;
+
+        returnValue =  String.format("%-" + n + "s", s);
+
+        if (pad != " ") {
+            returnValue = returnValue.replace(" ", pad);
+        }
+
+        if (returnValue.length() > n ) {
+            returnValue = returnValue.substring(0, n);
+        }
+        return returnValue;
+    }
+
+    protected static String padLeft(String s, String pad, int n) {
+
+        String returnValue;
+        returnValue =  String.format("%" + n + "s", s);
+
+        if (pad != " ") {
+            returnValue = returnValue.replace(" ", pad);
+        }
+
+        if (returnValue.length() > n ) {
+            returnValue = returnValue.substring(returnValue.length() - n);
+        }
+        return returnValue;
+    }
 
     public class SendDataTask extends AsyncTask<String, Void, String[]> {
 
