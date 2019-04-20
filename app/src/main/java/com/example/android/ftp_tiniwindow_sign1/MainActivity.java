@@ -62,6 +62,14 @@ public class MainActivity extends AppCompatActivity {
     private EditText mTextData;
     private TextView mTextMessage;
 
+
+    private String server = "107.180.55.10";
+    private int port = 21;
+    private String user = "Sign1@tiniliteworld.com";
+    private String pass = "Sign1";
+    private String fileName = "dat/Sign1.data";
+
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -137,17 +145,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void Send(View view) {
 
-        String server = "107.180.55.10";
-        int port = 21;
-        String user = "Sign1@tiniliteworld.com";
-        String pass = "Sign1";
-
         String [] params = {            //params
                 server,                 //0
                 "" + port,              //1
                 user,                   //2
                 pass,                   //3
-                "dat/Sign1.data",        //4
+                fileName,               //4
                 generateFileContents()  //5
 
         };
@@ -265,10 +268,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(String[] weatherData) {
+        protected void onPostExecute(String[] passedData) {
         }
+
     }
-
-
 
 }
