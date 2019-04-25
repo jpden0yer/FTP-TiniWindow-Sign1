@@ -1,6 +1,6 @@
 package com.example.android.ftp_tiniwindow_sign1;
 
-
+//042419 CF  following JP's version of 042319
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -150,13 +150,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void Send(View view) {
 
+
+        String fileContent = generateFileContents();
+
         String [] params = {            //params
                 server,                 //0
                 "" + port,              //1
                 user,                   //2
                 pass,                   //3
                 fileName,               //4
-                generateFileContents()  //5
+                fileContent             //5
 
         };
         new SendDataTask().execute(params);
@@ -171,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
                 "" + port,              //1
                 user,                   //2
                 pass,                   //3
-                fileName               //4
+                fileName                //4
 
 
         };
