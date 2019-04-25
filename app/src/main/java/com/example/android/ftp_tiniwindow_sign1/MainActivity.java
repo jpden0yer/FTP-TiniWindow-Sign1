@@ -36,6 +36,7 @@ import android.widget.Toast;
 //import com.example.android.sunshine.utilities.OpenWeatherJsonUtils;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 
@@ -54,6 +55,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.OutputStream;
+
+import static android.util.Half.NaN;
+import static android.util.Half.isNaN;
 
 public class MainActivity extends AppCompatActivity {
     private int lineCount;
@@ -101,7 +105,8 @@ public class MainActivity extends AppCompatActivity {
 
         mTextMessage = findViewById(R.id.message);
 
-        formatText() ;
+        Get(new View(this));
+        //formatText() ;
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
@@ -158,6 +163,78 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    public void Get(View view) {
+
+        String [] params = {            //params
+                server,                 //0
+                "" + port,              //1
+                user,                   //2
+                pass,                   //3
+                fileName               //4
+
+
+        };
+        new GetDataTask().execute(params);
+
+    }
+
+    protected static int pow (int base, int exp )
+    {
+        int returnval = 1;
+        if (exp == 0  && base != 0 ) return 1;
+        if (base == 0 && exp != 0 ) return 0;
+        if (base == 0 && exp == 0 ) return NaN;
+        if (exp < 0) return NaN ;
+
+        for (int i = 0; i <exp; i++)
+        {
+            returnval = returnval * base;
+
+        }
+
+        return returnval;
+
+
+    }
+
+
+    protected static int parseUnsignedInt (String val, int radix )
+    {
+
+
+        char[] chars = val.toLowerCase().toCharArray();
+        int returnval = 0;
+
+        if ( radix < 2) return -1;
+
+        for (int i = 0 ; i < val.length() ; i++) {
+
+            if (  chars[i] >= '0'   && chars[i] <= '9'  ) {
+
+                if ( chars[i] - '0' > radix ) return -1;
+
+                int ex = val.length() - i -1;
+                returnval = returnval + (chars[i] - '0') * pow ( radix, ex ) ;
+
+            }
+
+            else if (  chars[i] >= 'a'   && chars[i] <= 'z'  ) {
+
+                if ( chars[i] - 'a' + 11 > radix ) return -1;
+
+
+                returnval = returnval + (chars[i] - 'a' + 11) * pow ( radix, val.length() - i) ;
+
+            }
+            else return -1 ;
+
+
+
+        }
+
+        return    returnval ;
+    }
 
     protected static String join( String delim, String [] arr){
 
@@ -272,5 +349,128 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+
+    public class GetDataTask extends AsyncTask<String, Void, String[]> {
+
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected String[] doInBackground(String... params) {
+
+            Log.e("FTP-jp0", "begin doInBackground");
+
+
+            String server = params[0];
+            int port =   Integer.parseInt(params[1]);
+            String user = params[2];
+            String pass = params[3];
+            String fileName = params[4];
+            String fileContents = "";
+
+            int bytesRead;
+
+            FTPClient ftpClient = new FTPClient();
+
+
+            try {
+
+                ftpClient.connect(server, port);
+
+                ftpClient.login(user, pass);
+
+
+                ftpClient.enterLocalPassiveMode();
+
+                ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+
+                InputStream inputStream  = ftpClient.retrieveFileStream(fileName);
+
+
+
+                byte[] bytesIn = new byte[2048];
+
+                while ((bytesRead = inputStream.read(bytesIn)) > 0) {
+
+                        fileContents = fileContents + new String( bytesIn) ;
+                }
+
+            } catch (IOException ex) {
+
+
+
+                Log.e("FTP-jp0","catch block after location " );
+                System.out.println("Error: " + ex.getMessage());
+                ex.printStackTrace();
+
+
+            }
+
+
+
+            return new String[] { fileContents};
+
+        }
+
+        @Override
+        protected void onPostExecute(String[] passedData) {
+            if (passedData == null)  return;
+
+            String fileContents = passedData[0];
+
+            String textdata = "";
+
+            String [] splitData;
+            splitData = fileContents.split("\r\n") ;
+
+            int speed;
+            int i;
+
+            for (i=0; i<splitData.length; i++){
+
+                  if (splitData[i].equals("[TRICK CODING VERSION 2.2]" )) break;
+                if (! textdata.equals("") ) {
+
+                    textdata = textdata + "\n" ;
+                    lineLength = splitData[i].length();
+                }
+
+
+                textdata = textdata + splitData[i];
+
+                if (lineLength <  splitData[i].length()) lineLength =  splitData[i].length();
+
+
+            }
+
+            lineCount = i;
+
+            i = i + 1;
+
+
+
+
+                    String dataline = splitData[i];
+                    int len = dataline.length();
+
+                    String lineCountStr = dataline.substring(20,22);
+                    String speedStr = dataline.substring(22,24);
+
+                    lineCount = parseUnsignedInt( lineCountStr , 16);
+                    speed  = parseUnsignedInt( speedStr , 16) ;
+
+                    if (speed == NaN ||  speed < 1 || speed > 255 ) speed = 100;
+
+                    speed = speed / 10;
+                    mSpeed.setText("" + speed);
+                    mTextData.setText(textdata);
+
+
+        }
+
+    }
+
 
 }
