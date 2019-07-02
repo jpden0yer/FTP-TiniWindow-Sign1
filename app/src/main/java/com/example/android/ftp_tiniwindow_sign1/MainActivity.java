@@ -55,6 +55,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import static android.util.Half.NaN;
 import static android.util.Half.isNaN;
@@ -283,6 +285,43 @@ public class MainActivity extends AppCompatActivity {
         return returnValue;
     }
 
+public String[] splitlines(String s){
+    List<String> linelist = new ArrayList<String>();
+
+    int start = 0;
+    int end = 0;
+
+
+
+    for (int i = 0; i <s.length(); i++)
+    {
+       String thisletter = s.substring(i,i+1 );
+        if (thisletter.equals("\r") || thisletter.equals("\n")  )
+       {
+            if( (i - 1) <= start ){
+                start = i + 1;
+            }
+            else {
+                end = i ;
+                String thisline =  s.substring(start, end);
+                start = i + 1;
+                linelist.add(thisline);
+            }
+       }
+
+    }
+
+    String thisletter = s.substring(s.length() - 1,s.length() );
+    if (!thisletter.equals("\r") && !thisletter.equals("\n")  )
+    {
+        String thisline =  s.substring(start, s.length());
+        linelist.add(thisline);
+
+    }
+    String[] retval = new String[linelist.size()] ;
+    return linelist.toArray(retval );
+
+}
     public class SendDataTask extends AsyncTask<String, Void, String[]> {
 
         @Override
@@ -426,8 +465,8 @@ public class MainActivity extends AppCompatActivity {
             String textdata = "";
 
             String [] splitData;
-            splitData = fileContents.split("\r\n") ;
-
+            //splitData = fileContents.split("\n") ;
+            splitData = splitlines(fileContents);
             int speed;
             int i;
 
