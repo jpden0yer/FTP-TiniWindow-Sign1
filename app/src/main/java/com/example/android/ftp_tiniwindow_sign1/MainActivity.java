@@ -61,6 +61,7 @@ import java.util.List;
 import static android.util.Half.NaN;
 import static android.util.Half.isNaN;
 
+
 public class MainActivity extends AppCompatActivity {
     private int lineCount;
     private int lineLength = 10;
@@ -75,7 +76,121 @@ public class MainActivity extends AppCompatActivity {
     private String pass = "Sign1";
     private String fileName = "dat/Sign1.data";
 
+    String[] chargen = new String[]{
+            "0000",
+            "EEEE",
+            "DDDD",
+            "BBB7",
+            "777B",
+            "F7F4",
+            "FF8B",
+            "8F7F",
+            "78FF",
+            "2AB2",
+            "3AE2",
+            "2FA3",
+            "EBA6",
+            "F72B",
+            "EBA2",
+            "FBE2",
+            "FFFF",
+            "FFFF",
+            "FFFF",
+            "FFFF",
+            "FFFF",
+            "FFFF",
+            "FFFF",
+            "FFFF",
+            "633B",
+            "7D79",
+            "6322",
+            "72FF",
+            "FDE5",
+            "673B",
+            "D75F",
+            "F57D",
+            "FFFF",
+            "BEFF",
+            "F7F7",
+            "0000",
+            "2332",
+            "2552",
+            "A11C",
+            "FDFF",
+            "DDFF",
+            "FFDD",
+            "5559",
+            "777B",
+            "FFDF",
+            "7FFB",
+            "FF2B",
+            "FDDF",
+            "A886",
+            "BEFF",
+            "6AAA",
+            "2ABE",
+            "3EF3",
+            "CBB2",
+            "2BA2",
+            "BAFE",
+            "2AA2",
+            "2AB2",
+            "F77F",
+            "F7DF",
+            "DDFF",
+            "6FBB",
+            "FFDD",
+            "7A7F",
+            "62A6",
+            "3AE2",
+            "223E",
+            "EBA6",
+            "A23E",
+            "6BA2",
+            "FBE2",
+            "2BA6",
+            "3EE3",
+            "F77F",
+            "AEAF",
+            "DDE3",
+            "EFA7",
+            "BCE5",
+            "9EE5",
+            "AAA6",
+            "7AE2",
+            "8AA6",
+            "5AE2",
+            "2BB2",
+            "F37E",
+            "AEA7",
+            "FDC7",
+            "9EC7",
+            "DDDD",
+            "FD7D",
+            "E99E",
+            "E37F",
+            "DFFD",
+            "F73E",
+            "F8DF",
+            "EFBF",
+            "FFFD",
+            "3AE2",
+            "223E",
+            "EBA6",
+            "A23E",
+            "6BA2",
+            "FBE2",
+            "2BA6",
+            "FFFF",
+            "FFFF",
+            "FFFF",
+            "FFFF",
+            "FFFF",
+            "FFFF",
+            "FFFF",
+            "FFFF"
 
+    };
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -109,10 +224,32 @@ public class MainActivity extends AppCompatActivity {
 
         Get(new View(this));
         //formatText() ;
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation =  findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
+
+    public String charToHex (char ch){
+
+       return  chargen[ch];
+
+    }
+
+
+    public String textToHex (String text){
+        String returnval = "";
+        int asciival ;
+
+        for (int i = 1; i <= text.length() ; i++ ){
+
+            asciival = text.charAt(i);
+
+            returnval = returnval + chargen [asciival] ;
+
+        }
+
+        return returnval;
+    }
 
     void formatText(){
         String mlines = mTextData.getText().toString()  ;
@@ -133,6 +270,56 @@ public class MainActivity extends AppCompatActivity {
         mTextData.setText(mlines);
     };
 
+
+    private String generateFileContents(){
+        String text = mTextData.getText().toString();
+        String thisline = "";
+        char thischar;
+        int linecount = 0;
+        String returnval = "";
+
+        for (int j = 1; j < text.length(); j++ )
+        {
+            thischar = text.charAt(j);
+            if (thischar == '\r' || thischar == '\n' || thisline.length() == 96 )
+            {
+                if (thisline.length() == 0)
+                    continue;
+
+                while (thisline.length() < 96 )
+                    thisline = thisline + charToHex(' ');
+
+                returnval = returnval + thisline + "\r\n";
+                linecount = linecount + 1;
+                thisline = "";
+                if (linecount >= 10 )
+                    break;
+
+                continue;
+            }
+
+
+
+            thisline = thisline +  charToHex(thischar);
+
+        }
+
+
+
+        while (linecount < 10)
+        {
+            while (thisline.length() < 96 )
+                thisline = thisline + charToHex(' ');
+
+            returnval = returnval + thisline + "\r\n";
+            linecount = linecount + 1;
+            thisline = "";
+        }
+
+        return returnval;
+    };
+
+    /*
     private String generateFileContents(){
        int speed =  Integer.parseInt(mSpeed.getText().toString()) ;
         formatText();
@@ -149,7 +336,7 @@ public class MainActivity extends AppCompatActivity {
 
     };
 
-
+*/
     public void Send(View view) {
 
 
