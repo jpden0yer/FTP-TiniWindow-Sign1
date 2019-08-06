@@ -77,27 +77,27 @@ public class MainActivity extends AppCompatActivity {
     private String fileName = "dat/Sign1.data";
 
     String[] chargen = new String[]{
-            "0000",
-            "EEEE",
-            "DDDD",
-            "BBB7",
-            "777B",
-            "F7F4",
-            "FF8B",
-            "8F7F",
-            "78FF",
-            "2AB2",
-            "3AE2",
-            "2FA3",
-            "EBA6",
-            "F72B",
-            "EBA2",
-            "FBE2",
-            "FFFF",
-            "FFFF",
-            "FFFF",
-            "FFFF",
-            "FFFF",
+            "0000",  //0
+            "EEEE",  //1
+            "DDDD",  //2
+            "BBB7",   //3
+            "777B",  //4
+            "F7F4",   //5
+            "FF8B",   //6
+            "8F7F",   //7
+            "78FF",   //8
+            "2AB2",   //9
+            "3AE2",   //10
+            "2FA3",   //11
+            "EBA6",   //
+            "F72B",   //
+            "EBA2",   //
+            "FBE2",   //
+            "FFFF",   //
+            "FFFF",   //
+            "FFFF",   //
+            "FFFF",   //
+            "FFFF",   //20
             "FFFF",
             "FFFF",
             "FFFF",
@@ -106,8 +106,8 @@ public class MainActivity extends AppCompatActivity {
             "6322",
             "72FF",
             "FDE5",
-            "673B",
-            "D75F",
+            "673B",  //
+            "D75F",  //30
             "F57D",
             "FFFF",
             "BEFF",
@@ -116,79 +116,79 @@ public class MainActivity extends AppCompatActivity {
             "2332",
             "2552",
             "A11C",
-            "FDFF",
-            "DDFF",
-            "FFDD",
-            "5559",
-            "777B",
-            "FFDF",
-            "7FFB",
+            "FDFF", //
+            "DDFF", //40
+            "FFDD", //41
+            "5559", //42
+            "777B", //43
+            "FFDF", //44
+            "7FFB", //45
             "FF2B",
-            "FDDF",
-            "A886",
-            "BEFF",
-            "6AAA",
-            "2ABE",
-            "3EF3",
-            "CBB2",
-            "2BA2",
-            "BAFE",
-            "2AA2",
-            "2AB2",
-            "F77F",
-            "F7DF",
-            "DDFF",
-            "6FBB",
-            "FFDD",
-            "7A7F",
-            "62A6",
-            "3AE2",
-            "223E",
-            "EBA6",
-            "A23E",
-            "6BA2",
-            "FBE2",
-            "2BA6",
-            "3EE3",
-            "F77F",
-            "AEAF",
-            "DDE3",
-            "EFA7",
-            "BCE5",
-            "9EE5",
-            "AAA6",
-            "7AE2",
-            "8AA6",
-            "5AE2",
-            "2BB2",
-            "F37E",
-            "AEA7",
-            "FDC7",
-            "9EC7",
-            "DDDD",
-            "FD7D",
-            "E99E",
+            "FDDF", //
+            "A886", //48 - 0
+            "BEFF", //49 - 1
+            "6AAA", //50 - 2
+            "2ABE", //51 - 3
+            "3EF3", //52 - 4
+            "CBB2", //53  - 5
+            "2BA2", //54 - 6
+            "BAFE", //55 - 7
+            "2AA2", //56 - 8
+            "2AB2", //57 -  9
+            "F77F", //58 - :
+            "F7DF", //59
+            "DDFF", //60 - <
+            "6FBB", //61
+            "FFDD", //62
+            "7A7F", //63
+            "62A6", //64
+            "3AE2", //65 - A
+            "223E", //66 - B
+            "EBA6", //67 - C
+            "A23E", //68 - D
+            "6BA2", //69 - E
+            "FBE2", //70 - F
+            "2BA6", //71 - F
+            "3EE3", //72 - G
+            "F77F", //73 - I
+            "AEAF", //74 - J
+            "DDE3", //75 - K
+            "EFA7", //76 - L
+            "BCE5", //77 - M
+            "9EE5", //78 - N
+            "AAA6", //79 - O
+            "7AE2", //80 - P
+            "8AA6", //81 - Q
+            "5AE2", //82 - R
+            "2BB2", //83 - S
+            "F37E", //84 - T
+            "AEA7", //85 - U
+            "FDC7", //86 - V
+            "9EC7", //87 - W
+            "DDDD", //88 - X
+            "FD7D", //89 - Y
+            "E99E", //90 - Z
             "E37F",
             "DFFD",
             "F73E",
             "F8DF",
             "EFBF",
             "FFFD",
-            "3AE2",
-            "223E",
-            "EBA6",
-            "A23E",
-            "6BA2",
-            "FBE2",
-            "2BA6",
-            "FFFF",
-            "FFFF",
-            "FFFF",
-            "FFFF",
-            "FFFF",
-            "FFFF",
-            "FFFF",
-            "FFFF"
+            "3AE2",//97
+            "223E",//98
+            "EBA6",//99
+            "A23E",//100
+            "6BA2",//101
+            "FBE2",//102
+            "2BA6",//103
+            "FFFF",//104
+            "FFFF",//105
+            "FFFF",//106
+            "FFFF",//107
+            "FFFF",//108
+            "FFFF",//109
+            "FFFF",  //110
+            "FFFF"  //111
 
     };
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -228,6 +228,27 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
+    public char hexTochar (String hexval){
+
+        if (hexval.equals("FFFF") ) return ' ';
+
+        for (int i = 0 ; i < chargen.length ; i++)
+        {
+            if (chargen [i].equals(hexval))
+                return (char) i;
+        }
+
+        return '\0';
+    }
+
+    public String hexToText (String hexstring){
+        String returnval = "";
+
+        for (int i = 0; i < hexstring.length() ; i = i + 4 ){
+            returnval += hexTochar (hexstring.substring(i, i + 4)) ;
+        }
+        return returnval;
+    }
 
     public String charToHex (char ch){
 
@@ -238,19 +259,24 @@ public class MainActivity extends AppCompatActivity {
 
     public String textToHex (String text){
         String returnval = "";
-        int asciival ;
 
-        for (int i = 1; i <= text.length() ; i++ ){
-
-            asciival = text.charAt(i);
-
-            returnval = returnval + chargen [asciival] ;
-
+        for (int i = 0; i < text.length() ; i++ ){
+            returnval += chargen [text.charAt(i)] ;
         }
 
         return returnval;
     }
 
+    String strReverse (String str){
+        String returnval = "";
+
+        for (int i = str.length() - 1; i >=0; i--   )
+        {
+            returnval = returnval + str.charAt(i);
+
+        }
+        return returnval;
+    }
     void formatText(){
         String mlines = mTextData.getText().toString()  ;
         String [] splitData;
@@ -272,24 +298,24 @@ public class MainActivity extends AppCompatActivity {
 
 
     private String generateFileContents(){
+        mTextData.setText(mTextData.getText().toString().toUpperCase());
         String text = mTextData.getText().toString();
         String thisline = "";
         char thischar;
         int linecount = 0;
         String returnval = "";
-
-        for (int j = 1; j < text.length(); j++ )
+        for (int j = 0; j < text.length(); j++ )
         {
             thischar = text.charAt(j);
-            if (thischar == '\r' || thischar == '\n' || thisline.length() == 96 )
+            if (thischar == '\r' || thischar == '\n' || thisline.length() == 24 )
             {
                 if (thisline.length() == 0)
                     continue;
 
-                while (thisline.length() < 96 )
-                    thisline = thisline + charToHex(' ');
+                while (thisline.length() < 24 )
+                    thisline = thisline + ' ';
 
-                returnval = returnval + thisline + "\r\n";
+                returnval = returnval + textToHex( strReverse(thisline) )  + "\r\n";
                 linecount = linecount + 1;
                 thisline = "";
                 if (linecount >= 10 )
@@ -300,7 +326,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-            thisline = thisline +  charToHex(thischar);
+            thisline = thisline +  thischar;
 
         }
 
@@ -308,10 +334,10 @@ public class MainActivity extends AppCompatActivity {
 
         while (linecount < 10)
         {
-            while (thisline.length() < 96 )
-                thisline = thisline + charToHex(' ');
+            while (thisline.length() < 24 )
+                thisline = thisline + ' ';
 
-            returnval = returnval + thisline + "\r\n";
+            returnval = returnval + textToHex( strReverse(thisline) )  + "\r\n";
             linecount = linecount + 1;
             thisline = "";
         }
@@ -339,6 +365,7 @@ public class MainActivity extends AppCompatActivity {
 */
     public void Send(View view) {
 
+        mTextData.setText(mTextData.getText().toString().toUpperCase());
 
         String fileContent = generateFileContents();
 
@@ -649,57 +676,16 @@ public String[] splitlines(String s){
 
             String fileContents = passedData[0];
 
-            String textdata = "";
+            String textData = "";
 
             String [] splitData;
-            //splitData = fileContents.split("\n") ;
             splitData = splitlines(fileContents);
-            int speed;
-            int i;
 
-            for (i=0; i<splitData.length; i++){
+            for (int i=0; i<splitData.length; i++){
 
-                  if (splitData[i].equals("[TRICK CODING VERSION 2.2]" )) break;
-                if (! textdata.equals("") ) {
-
-                    textdata = textdata + "\n" ;
-                    lineLength = splitData[i].length();
-                }
-
-
-                textdata = textdata + splitData[i];
-
-                if (lineLength <  splitData[i].length()) lineLength =  splitData[i].length();
-
-
+                textData +=  strReverse( hexToText( splitData[i])) + "\r";
             }
-
-            lineCount = i;
-
-            i = i + 1;
-
-
-
-
-                    String dataline = splitData[i];
-                    int len = dataline.length();
-
-                    String lineCountStr = dataline.substring(20,22);
-                    String speedStr = dataline.substring(22,24);
-
-                    lineCount = parseUnsignedInt( lineCountStr , 16);
-                    speed  = parseUnsignedInt( speedStr , 16) ;
-
-                    if (speed == NaN ||  speed < 1 || speed > 255 ) speed = 100;
-
-                    speed = speed / 10;
-                    mSpeed.setText("" + speed);
-                    mTextData.setText(textdata);
-
-
+            mTextData.setText(textData);
         }
-
     }
-
-
 }
